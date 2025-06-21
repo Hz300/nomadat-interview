@@ -80,3 +80,81 @@ public function estudiantes()
 ```
 
 Laravel espera que exista una tabla pivote (por ejemplo, `curso_estudiante`) que contenga los IDs de ambas tablas.
+
+
+## Script de php para escribir numeros del 1 - 10
+```php
+for ($x = 0; $x <= 10; $x++) {
+  echo "El numero es: $x <br>";
+}
+
+```
+
+## Escribe una consulta SQL para seleccionar datos de una tabla.
+
+```sql
+SELECT * FROM PRODUCTOS;
+```
+
+## Crear una tabla en Mysql con clave foranea
+```sql
+-- Crear la tabla `colores`
+CREATE TABLE colores (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Crear la tabla `camisas`
+CREATE TABLE camisas (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    talla ENUM('XS', 'S', 'M', 'L', 'XL') NOT NULL,
+    precio DECIMAL(8,2) NOT NULL,
+    color_id INT UNSIGNED NOT NULL,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    -- Clave foránea hacia la tabla `colores`
+    CONSTRAINT fk_camisas_color
+        FOREIGN KEY (color_id)
+        REFERENCES colores(id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+```
+
+## Formulario HTML Básico con Validación en JavaScript
+
+
+## Código HTML
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Contacto</title>
+</head>
+<body>
+    <h1>Formulario de Contacto</h1>
+
+    <form onsubmit="return validarFormulario()">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre"><br><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        function validarFormulario() {
+            const nombre = document.getElementById('nombre').value.trim();
+
+            if (nombre === '' || typeof nombre !== 'string') {
+                alert('Por favor, ingresa tu nombre.');
+                return false;
+            }
+
+            return true; 
+        }
+    </script>
+</body>
+</html>
